@@ -144,7 +144,7 @@ class HotelReservation(models.Model):
     )
     note = fields.Text(string="Note", track_visibility="onchange")
 
-    @api.multi
+    
     def _compute_folio_id(self):
         folio_list = []
         for res in self:
@@ -154,7 +154,7 @@ class HotelReservation(models.Model):
             res.no_of_folio = folio_len
         return folio_len
 
-    @api.multi
+    
     def unlink(self):
         """
         Overrides orm unlink method.
@@ -172,7 +172,7 @@ class HotelReservation(models.Model):
                 )
         return super(HotelReservation, self).unlink()
 
-    @api.multi
+    
     def copy(self):
         ctx = dict(self._context) or {}
         ctx.update({"duplicate": True})
@@ -289,14 +289,14 @@ class HotelReservation(models.Model):
         )
         return super(HotelReservation, self).create(vals)
 
-    @api.multi
+    
     def check_overlap(self, date1, date2):
         date2 = datetime.strptime(date2, "%Y-%m-%d")
         date1 = datetime.strptime(date1, "%Y-%m-%d")
         delta = date2 - date1
         return {date1 + timedelta(days=i) for i in range(delta.days + 1)}
 
-    @api.multi
+    
     def confirmed_reservation(self):
         """
         This method create a new record set for hotel room reservation line
@@ -406,7 +406,7 @@ class HotelReservation(models.Model):
                     reservation_line_obj.create(vals)
         return True
 
-    @api.multi
+    
     def cancel_reservation(self):
         """
         This method cancel record set for hotel room reservation line
@@ -431,12 +431,12 @@ class HotelReservation(models.Model):
             )
         return True
 
-    @api.multi
+    
     def set_to_draft_reservation(self):
         self.state = "draft"
         return True
 
-    @api.multi
+    
     def send_reservation_maill(self):
         """
         This function opens a window to compose an email,
@@ -509,7 +509,7 @@ class HotelReservation(models.Model):
                 template_rec.send_mail(reserv_rec.id, force_send=True)
         return True
 
-    @api.multi
+    
     def create_folio(self):
         """
         This method is for create new hotel folio.
@@ -581,7 +581,7 @@ class HotelReservation(models.Model):
             self.state = "done"
         return True
 
-    @api.multi
+    
     def onchange_check_dates(
         self, checkin_date=False, checkout_date=False, duration=False
     ):

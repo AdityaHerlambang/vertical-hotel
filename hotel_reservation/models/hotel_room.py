@@ -13,7 +13,7 @@ class HotelRoom(models.Model):
         "hotel.room.reservation.line", "room_id", string="Room Reserve Line"
     )
 
-    @api.multi
+    
     def unlink(self):
         """
         Overrides orm unlink method.

@@ -34,7 +34,7 @@ class SaleAdvancePaymentInv(models.TransientModel):
         required=True,
     )
 
-    @api.multi
+    
     def create_invoices(self):
         ctx = self.env.context.copy()
         if self._context.get("active_model") == "hotel.folio":

@@ -11,7 +11,7 @@ from odoo.fields import Date, Datetime
 class HotelRoom(models.Model):
     _inherit = "hotel.room"
 
-    @api.multi
+    
     def action_housekeeping_planning_report(self):
         rooms = self.search([])
         return self.env.ref(
@@ -19,7 +19,7 @@ class HotelRoom(models.Model):
             ".action_hotel_housekeeping_planning_report"
         ).report_action(rooms)
 
-    @api.multi
+    
     def get_occupation(self, day):
         """day: date object"""
         assert type(day) == date, "day should be of type datetime.date"
@@ -53,7 +53,7 @@ class HotelRoom(models.Model):
         monday = today - timedelta(days=today.weekday())
         return [monday + timedelta(days=i) for i in range(7)]
 
-    @api.multi
+    
     def _get_notes(self):
         self.ensure_one()
         today = date.today()
@@ -94,7 +94,7 @@ class HotelRoom(models.Model):
         notes = (note for note in notes if note)  # remove empty notes (False)
         return "\n".join(notes)
 
-    @api.multi
+    
     def _get_week_occupation(self):
         self.ensure_one()
         week_occupation = [
@@ -102,7 +102,7 @@ class HotelRoom(models.Model):
         ]
         return week_occupation
 
-    @api.multi
+    
     def get_housekeeping_weekly_report_data(self):
         """returns a dictionary with rooms in key and values the daily
             room occupation:

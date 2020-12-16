@@ -9,7 +9,7 @@ class WizardHotelRestaurant(models.TransientModel):
     date_start = fields.Datetime("Start Date", required=True)
     date_end = fields.Datetime("End Date", required=True)
 
-    @api.multi
+    
     def print_report(self):
         data = {
             "ids": self.ids,
@@ -29,7 +29,7 @@ class FolioRestReservation(models.TransientModel):
     date_end = fields.Datetime("End Date")
     check = fields.Boolean("With Details")
 
-    @api.multi
+    
     def print_rest_report(self):
         data = {
             "ids": self.ids,
@@ -40,7 +40,7 @@ class FolioRestReservation(models.TransientModel):
             "hotel_restaurant.report_hotel_res_folio"
         ).report_action(self, data=data)
 
-    @api.multi
+    
     def print_reserv_report(self):
         data = {
             "ids": self.ids,

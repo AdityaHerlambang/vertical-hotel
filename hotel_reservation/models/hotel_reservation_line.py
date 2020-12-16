@@ -90,7 +90,7 @@ class HotelReservationLine(models.Model):
         domain = {"reserve": [("id", "in", room_ids)]}
         return {"domain": domain}
 
-    @api.multi
+    
     def unlink(self):
         """
         Overrides orm unlink method.

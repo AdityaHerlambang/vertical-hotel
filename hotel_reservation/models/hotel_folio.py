@@ -70,7 +70,7 @@ class HotelFolioLine(models.Model):
                 avail_prod_ids.append(room.product_id.id)
         return res
 
-    @api.multi
+    
     def write(self, vals):
         """
         Overrides orm write method.

@@ -25,7 +25,7 @@ class HotelRoomType(models.Model):
             vals.update({"parent_id": room_categ.product_categ_id.id})
         return super(HotelRoomType, self).create(vals)
 
-    @api.multi
+    
     def write(self, vals):
         if vals.get("categ_id", False):
             room_categ = self.env["hotel.room.type"].browse(
@@ -34,7 +34,7 @@ class HotelRoomType(models.Model):
             vals.update({"parent_id": room_categ.product_categ_id.id})
         return super(HotelRoomType, self).write(vals)
 
-    @api.multi
+    
     def name_get(self):
         def get_names(cat):
             """ Return the list [cat.name, cat.categ_id.name, ...] """

@@ -85,7 +85,7 @@ class QuickRoomReservation(models.TransientModel):
                 res.update({"room_id": int(roomid)})
         return res
 
-    @api.multi
+    
     def room_reserve(self):
         """
         This method create a new record for hotel.reservation

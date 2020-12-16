@@ -10,7 +10,7 @@ class HotelHousekeepingWizard(models.TransientModel):
     date_end = fields.Datetime("Activity End Date", required=True)
     room_id = fields.Many2one("hotel.room", "Room No", required=True)
 
-    @api.multi
+    
     def print_report(self):
         data = {
             "ids": self.ids,

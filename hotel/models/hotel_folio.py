@@ -75,7 +75,7 @@ class FolioRoomLine(models.Model):
 
 
 class HotelFolio(models.Model):
-    @api.multi
+    
     def name_get(self):
         res = []
         disp = ""
@@ -136,7 +136,7 @@ class HotelFolio(models.Model):
             + tm_delta
         )
 
-    @api.multi
+    
     def copy(self, default=None):
         """
         @param self: object pointer
@@ -316,7 +316,7 @@ class HotelFolio(models.Model):
                         folio_room_line_obj.create(vals)
         return folio_id
 
-    @api.multi
+    
     def write(self, vals):
         """
         Overrides orm write method.
@@ -398,11 +398,11 @@ class HotelFolio(models.Model):
                 self.partner_shipping_id = partner_rec.id
                 self.pricelist_id = partner_rec.property_product_pricelist.id
 
-    @api.multi
+    
     def action_done(self):
         self.state = "done"
 
-    @api.multi
+    
     def action_invoice_create(self, grouped=False, final=False):
         """
         @param self: object pointer
@@ -424,7 +424,7 @@ class HotelFolio(models.Model):
                 room_rec.write({"isroom": True})
         return invoice_id
 
-    @api.multi
+    
     def action_invoice_cancel(self):
         """
         @param self: object pointer
@@ -437,7 +437,7 @@ class HotelFolio(models.Model):
         self.state = "invoice_except"
         return self.order_id.action_invoice_cancel
 
-    @api.multi
+    
     def action_cancel(self):
         """
         @param self: object pointer
@@ -449,7 +449,7 @@ class HotelFolio(models.Model):
                 invoice.state = "cancel"
         return self.order_id.action_cancel()
 
-    @api.multi
+    
     def action_confirm(self):
         for order in self.order_id:
             order.state = "sale"
@@ -462,7 +462,7 @@ class HotelFolio(models.Model):
         if config_parameter_obj.sudo().get_param("sale.auto_done_setting"):
             self.order_id.action_done()
 
-    @api.multi
+    
     def test_state(self, mode):
         """
         @param self: object pointer
@@ -477,7 +477,7 @@ class HotelFolio(models.Model):
             test_obj = self.env["sale.order.line"].browse(write_cancel_ids)
             test_obj.write({"state": "cancel"})
 
-    @api.multi
+    
     def action_cancel_draft(self):
         """
         @param self: object pointer

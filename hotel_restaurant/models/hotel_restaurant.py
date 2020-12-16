@@ -37,7 +37,7 @@ class HotelMenucardType(models.Model):
         "hotel.menucard.type", "menu_id", "Child Categories"
     )
 
-    @api.multi
+    
     def name_get(self):
         def get_names(cat):
             """ Return the list [cat.name, cat.menu_id.name, ...] """
@@ -131,7 +131,7 @@ class HotelRestaurantTables(models.Model):
 
 
 class HotelRestaurantReservation(models.Model):
-    @api.multi
+    
     def create_order(self):
         """
         This method is for create a new order for hotel restaurant
@@ -185,7 +185,7 @@ class HotelRestaurantReservation(models.Model):
                 if rec.folio_id.room_lines:
                     rec.room_no = rec.folio_id.room_lines[0].product_id.id
 
-    @api.multi
+    
     def action_set_to_draft(self):
         """
         This method is used to change the state
@@ -196,7 +196,7 @@ class HotelRestaurantReservation(models.Model):
         self.state = "draft"
         return True
 
-    @api.multi
+    
     def table_reserved(self):
         """
         when CONFIRM BUTTON is clicked this method is called for
@@ -245,7 +245,7 @@ class HotelRestaurantReservation(models.Model):
             self.state = "confirm"
             return True
 
-    @api.multi
+    
     def table_cancel(self):
         """
         This method is used to change the state
@@ -256,7 +256,7 @@ class HotelRestaurantReservation(models.Model):
         self.state = "cancel"
         return True
 
-    @api.multi
+    
     def table_done(self):
         """
         This method is used to change the state
@@ -384,7 +384,7 @@ class HotelRestaurantKitchenOrderTickets(models.Model):
 
 
 class HotelRestaurantOrder(models.Model):
-    @api.multi
+    
     @api.depends("order_list")
     def _compute_amount_all_total(self):
         """
@@ -418,7 +418,7 @@ class HotelRestaurantOrder(models.Model):
                 if rec.folio_id.room_lines:
                     self.room_no = rec.folio_id.room_lines[0].product_id.id
 
-    @api.multi
+    
     def done_cancel(self):
         """
         This method is used to change the state
@@ -429,7 +429,7 @@ class HotelRestaurantOrder(models.Model):
         self.state = "cancel"
         return True
 
-    @api.multi
+    
     def set_to_draft(self):
         """
         This method is used to change the state
@@ -440,7 +440,7 @@ class HotelRestaurantOrder(models.Model):
         self.state = "draft"
         return True
 
-    @api.multi
+    
     def generate_kot(self):
         """
         This method create new record for hotel restaurant order list.
@@ -553,7 +553,7 @@ class HotelRestaurantOrder(models.Model):
         vals["order_no"] = rest_order
         return super(HotelRestaurantOrder, self).create(vals)
 
-    @api.multi
+    
     def generate_kot_update(self):
         """
         This method update record for hotel restaurant order list.
@@ -588,7 +588,7 @@ class HotelRestaurantOrder(models.Model):
                     rest_order_list_obj.create(o_line)
         return True
 
-    @api.multi
+    
     def done_order_kot(self):
         """
         This method is used to change the state
@@ -628,7 +628,7 @@ class HotelRestaurantOrder(models.Model):
 
 
 class HotelReservationOrder(models.Model):
-    @api.multi
+    
     @api.depends("order_list")
     def _compute_amount_all_total(self):
         """
@@ -646,7 +646,7 @@ class HotelReservationOrder(models.Model):
                     + (sale.amount_subtotal * sale.tax) / 100.0
                 )
 
-    @api.multi
+    
     def reservation_generate_kot(self):
         """
         This method create new record for hotel restaurant order list.
@@ -683,7 +683,7 @@ class HotelReservationOrder(models.Model):
             self.state = "order"
         return res
 
-    @api.multi
+    
     def reservation_update_kot(self):
         """
         This method update record for hotel restaurant order list.
@@ -718,7 +718,7 @@ class HotelReservationOrder(models.Model):
                     rest_order_list_obj.create(o_line)
         return True
 
-    @api.multi
+    
     def done_kot(self):
         """
         This method is used to change the state
@@ -827,7 +827,7 @@ class HotelReservationOrder(models.Model):
 
 
 class HotelRestaurantOrderList(models.Model):
-    @api.multi
+    
     @api.depends("item_qty", "item_rate")
     def _compute_price_subtotal(self):
         """

@@ -58,7 +58,7 @@ class RoomReservationSummary(models.Model):
             res.update({"date_from": date_froms, "date_to": date_ends})
         return res
 
-    @api.multi
+    
     def room_reservation(self):
         """
         @param self: object pointer

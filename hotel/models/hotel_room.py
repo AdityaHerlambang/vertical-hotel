@@ -80,7 +80,7 @@ class HotelRoom(models.Model):
             vals.update({"categ_id": room_categ.product_categ_id.id})
         return super(HotelRoom, self).create(vals)
 
-    @api.multi
+    
     def write(self, vals):
         """
         Overrides orm write method.
@@ -98,7 +98,7 @@ class HotelRoom(models.Model):
             vals.update({"color": 5, "status": "available"})
         return super(HotelRoom, self).write(vals)
 
-    @api.multi
+    
     def set_room_status_occupied(self):
         """
         This method is used to change the state
@@ -108,7 +108,7 @@ class HotelRoom(models.Model):
         """
         return self.write({"isroom": False, "color": 2})
 
-    @api.multi
+    
     def set_room_status_available(self):
         """
         This method is used to change the state

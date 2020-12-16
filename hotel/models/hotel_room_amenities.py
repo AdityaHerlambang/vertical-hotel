@@ -14,7 +14,7 @@ class HotelRoomAmenitiesType(models.Model):
         "hotel.room.amenities.type", "amenity_id", "Child Categories"
     )
 
-    @api.multi
+    
     def name_get(self):
         def get_names(cat):
             """ Return the list [cat.name, cat.amenity_id.name, ...] """

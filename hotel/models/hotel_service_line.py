@@ -8,7 +8,7 @@ from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT
 
 
 class HotelServiceLine(models.Model):
-    @api.multi
+    
     def copy(self, default=None):
         """
         @param self: object pointer
@@ -59,7 +59,7 @@ class HotelServiceLine(models.Model):
             vals.update({"order_id": folio.order_id.id})
         return super(HotelServiceLine, self).create(vals)
 
-    @api.multi
+    
     def unlink(self):
         """
         Overrides orm unlink method.
@@ -73,7 +73,7 @@ class HotelServiceLine(models.Model):
                 sale_unlink_obj.unlink()
         return super(HotelServiceLine, self).unlink()
 
-    @api.multi
+    
     def _compute_tax_id(self):
         for line in self:
             fpos = (
@@ -166,7 +166,7 @@ class HotelServiceLine(models.Model):
             uom_factor = 1.0
         return product[field_name] * uom_factor * cur_factor, currency_id.id
 
-    @api.multi
+    
     def _get_display_price(self, product):
         # TO DO: move me in master/saas-16 on sale.order
         if self.folio_id.pricelist_id.discount_policy == "with_discount":
@@ -205,7 +205,7 @@ class HotelServiceLine(models.Model):
         # negative discounts (= surcharge) are included in the display price
         return max(base_price, final_price)
 
-    @api.multi
+    
     @api.onchange("product_id")
     def product_id_change(self):
         if not self.product_id:
@@ -291,7 +291,7 @@ class HotelServiceLine(models.Model):
             qty = diffDate.days + 1
             self.product_uom_qty = qty
 
-    @api.multi
+    
     def button_confirm(self):
         """
         @param self: object pointer
@@ -301,7 +301,7 @@ class HotelServiceLine(models.Model):
             x = line.button_confirm()
         return x
 
-    @api.multi
+    
     def button_done(self):
         """
         @param self: object pointer
@@ -311,7 +311,7 @@ class HotelServiceLine(models.Model):
             x = line.button_done()
         return x
 
-    @api.multi
+    
     def copy_data(self, default=None):
         """
         @param self: object pointer

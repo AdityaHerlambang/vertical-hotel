@@ -9,7 +9,7 @@ from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT
 
 
 class HotelFolioLine(models.Model):
-    @api.multi
+    
     def copy(self, default=None):
         """
         @param self: object pointer
@@ -91,7 +91,7 @@ class HotelFolioLine(models.Model):
                     )
                 )
 
-    @api.multi
+    
     def unlink(self):
         """
         Overrides orm unlink method.
@@ -195,7 +195,7 @@ class HotelFolioLine(models.Model):
             uom_factor = 1.0
         return product[field_name] * uom_factor * cur_factor, currency_id.id
 
-    @api.multi
+    
     def _get_display_price(self, product):
         # TO DO: move me in master/saas-16 on sale.order
         if self.folio_id.pricelist_id.discount_policy == "with_discount":
@@ -235,7 +235,7 @@ class HotelFolioLine(models.Model):
         # negative discounts (= surcharge) are included in the display price
         return max(base_price, final_price)
 
-    @api.multi
+    
     def _compute_tax_id(self):
         for line in self:
             fpos = (
@@ -255,7 +255,7 @@ class HotelFolioLine(models.Model):
                 else taxes
             )
 
-    @api.multi
+    
     @api.onchange("product_id", "checkin_date", "checkout_date")
     def product_id_change(self):
 
@@ -382,7 +382,7 @@ class HotelFolioLine(models.Model):
         domain = {"product_id": [("id", "in", avail_prod_ids)]}
         return {"domain": domain}
 
-    @api.multi
+    
     def button_confirm(self):
         """
         @param self: object pointer
@@ -392,7 +392,7 @@ class HotelFolioLine(models.Model):
             line.button_confirm()
         return True
 
-    @api.multi
+    
     def button_done(self):
         """
         @param self: object pointer
@@ -402,7 +402,7 @@ class HotelFolioLine(models.Model):
         self.state = "done"
         return True
 
-    @api.multi
+    
     def copy_data(self, default=None):
         """
         @param self: object pointer
